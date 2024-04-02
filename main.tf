@@ -24,6 +24,19 @@ module "lambdas" {
   source = "./modules/lambda"
   context = module.label.context
   table_authors_name = module.table_authors.id
+  role_get_all_authours_arn = module.iam.role_get_all_authours_arn
+}
+
+module "iam" {
+  source = "./modules/iam"
+  context = module.label.context
+  table_authors_arn = module.table_authors.arn
+  cloudwatch_log_group_get_all_authours_arn = module.cloudwatch.cloudwatch_log_group_get_all_authours_arn
+}
+
+module "cloudwatch" {
+  source = "./modules/cloudwatch"
+  context = module.label.context
 }
 
 

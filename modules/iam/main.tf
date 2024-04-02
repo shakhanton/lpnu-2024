@@ -1,0 +1,47 @@
+module "label" {
+  source   = "cloudposse/label/null"
+  version = "0.25.0"
+  context = var.context
+}
+
+module "label_get_all_authours" {
+  source   = "cloudposse/label/null"
+  version = "0.25.0"
+  context = module.label.context
+  name = "get-all-authours"
+}
+
+# module "iam_assumable_role" {
+#   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+#   version = "v5.37.2"
+
+#   create_role = true
+
+#   role_name         = module.label_get_all_authours.id
+#   role_requires_mfa = false
+
+#   custom_role_policy_arns = module.iam_policy.arn
+#   number_of_custom_role_policy_arns = 1
+# }
+
+data "aws_iam_policy_document" "lambda_assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role" "get_all_authours" {
+  name               = module.label_get_all_authours.id
+  path               = "/"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
+}
+
+resource "aws_iam_role_policy_attachment" "get_all_authours" {
+  role       = aws_iam_role.get_all_authours.name
+  policy_arn = module.iam_policy.arn
+}

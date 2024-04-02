@@ -19,6 +19,10 @@ module "lambda_function" {
   description   = "My awesome lambda function"
   handler       = "index.handler"
   runtime       = "nodejs16.x"
+  create_role     = false
+
+
+  lambda_role = var.role_get_all_authours_arn
 
   source_path = "${path.module}/src/get_all_authors"
 
