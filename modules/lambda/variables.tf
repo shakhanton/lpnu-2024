@@ -13,3 +13,7 @@ variable "role_get_all_authours_arn" {
 variable "role_get_all_courses_arn" {
     type = string
 }
+
+variable "aws_api_gateway_rest_api_execution_arn" {
+    type = string
+}
