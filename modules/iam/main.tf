@@ -4,11 +4,18 @@ module "label" {
   context = var.context
 }
 
-module "label_get_all_authours" {
+module "label_get_all_authors" {
   source   = "cloudposse/label/null"
   version = "0.25.0"
   context = module.label.context
-  name = "get-all-authours"
+  name = "get-all-authors"
+}
+
+module "label_get_all_courses" {
+  source   = "cloudposse/label/null"
+  version = "0.25.0"
+  context = module.label.context
+  name = "get-all-courses"
 }
 
 # module "iam_assumable_role" {
@@ -36,7 +43,13 @@ data "aws_iam_policy_document" "lambda_assume_role_policy" {
 }
 
 resource "aws_iam_role" "get_all_authours" {
-  name               = module.label_get_all_authours.id
+  name               = module.label_get_all_authors.id
+  path               = "/"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
+}
+
+resource "aws_iam_role" "get_all_courses" {
+  name               = module.label_get_all_courses.id
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
 }
@@ -44,4 +57,9 @@ resource "aws_iam_role" "get_all_authours" {
 resource "aws_iam_role_policy_attachment" "get_all_authours" {
   role       = aws_iam_role.get_all_authours.name
   policy_arn = module.iam_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "get_all_courses" {
+  role       = aws_iam_role.get_all_courses.name
+  policy_arn = module.iam_policy_courses.arn
 }
