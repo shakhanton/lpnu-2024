@@ -16,3 +16,9 @@ module "notify_slack" {
   slack_channel     = "aws-notification"
   slack_username    = "reporter"
 }
+
+resource "aws_sns_topic_subscription" "email" {
+  topic_arn = module.notify_slack.slack_topic_arn
+  protocol  = "email"
+  endpoint  = "anton.k.shakh@lpnu.ua"
+}
