@@ -31,7 +31,7 @@ module "cdn" {
     # }
 
     s3_one = {
-      domain_name = module.front_application.s3_bucket_bucket_domain_name
+      domain_name = module.front_application.s3_bucket_bucket_regional_domain_name
       s3_origin_config = {
         origin_access_identity = "s3_bucket_one"
         http_port              = 80
@@ -69,4 +69,17 @@ module "cdn" {
 #     acm_certificate_arn = "arn:aws:acm:us-east-1:135367859851:certificate/1032b155-22da-4ae0-9f69-e206f825458b"
 #     ssl_support_method  = "sni-only"
 #   }
+default_root_object = "index.html"
+
+  custom_error_response = [{
+    error_caching_min_ttl = 10
+    error_code         = 404
+    response_code      = 200
+    response_page_path = "/index.html"
+    }, {
+    error_caching_min_ttl = 10
+    error_code         = 403
+    response_code      = 200
+    response_page_path = "/index.html"
+  }]
 }

@@ -21,7 +21,8 @@ module "lambdas" {
   role_get_all_authours_arn = module.iam.role_get_all_authours_arn
   table_courses_name = module.table_courses.id
   role_get_all_courses_arn = module.iam.role_get_all_courses_arn
-  aws_api_gateway_rest_api_execution_arn = aws_api_gateway_rest_api.this.execution_arn 
+  aws_api_gateway_rest_api_execution_arn = aws_api_gateway_rest_api.this.execution_arn
+  logging_log_group_authors = module.cloudwatch.cloudwatch_log_group_get_all_authours_name
 }
 
 module "iam" {

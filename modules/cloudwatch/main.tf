@@ -8,7 +8,7 @@ module "label_get_all_authours" {
   source   = "cloudposse/label/null"
   version = "0.25.0"
   context = module.label.context
-  name = "get-all-authours"
+  name = "get-all-authors"
 }
 
 module "label_get_all_courses" {

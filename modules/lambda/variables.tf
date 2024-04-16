@@ -17,3 +17,7 @@ variable "role_get_all_courses_arn" {
 variable "aws_api_gateway_rest_api_execution_arn" {
     type = string
 }
+
+variable "logging_log_group_authors" {
+    type = string
+}

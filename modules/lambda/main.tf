@@ -45,6 +45,9 @@ module "lambda_function_authors" {
     }
   }
 
+  use_existing_cloudwatch_log_group = true
+  logging_log_group = var.logging_log_group_authors
+
   tags = module.label_get_all_authours.tags
 }
 
