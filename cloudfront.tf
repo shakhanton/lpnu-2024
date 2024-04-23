@@ -71,8 +71,6 @@ module "cdn" {
   #   }
   default_root_object = "index.html"
 
-
-
   custom_error_response = [{
     error_caching_min_ttl = 10
     error_code            = 404
