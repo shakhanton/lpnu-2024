@@ -1,11 +1,11 @@
 module "cdn" {
-  source = "terraform-aws-modules/cloudfront/aws"
+  source  = "terraform-aws-modules/cloudfront/aws"
   version = "v3.4.0"
-#   aliases = ["cdn.example.com"]
+  #   aliases = ["cdn.example.com"]
 
-  comment             = "My awesome CloudFront 2024"
-  enabled             = true
-#   is_ipv6_enabled     = true
+  comment = "My awesome CloudFront 2024"
+  enabled = true
+  #   is_ipv6_enabled     = true
   price_class         = "PriceClass_100"
   retain_on_delete    = false
   wait_for_deployment = false
@@ -15,9 +15,9 @@ module "cdn" {
     s3_bucket_one = "My awesome CloudFront can access"
   }
 
-#   logging_config = {
-#     bucket = "logs-my-cdn.s3.amazonaws.com"
-#   }
+  #   logging_config = {
+  #     bucket = "logs-my-cdn.s3.amazonaws.com"
+  #   }
 
   origin = {
     # something = {
@@ -43,8 +43,8 @@ module "cdn" {
   }
 
   default_cache_behavior = {
-    target_origin_id           = "s3_one"
-    viewer_protocol_policy     = "allow-all"
+    target_origin_id       = "s3_one"
+    viewer_protocol_policy = "allow-all"
 
     allowed_methods = ["GET", "HEAD", "OPTIONS"]
     cached_methods  = ["GET", "HEAD"]
@@ -52,34 +52,34 @@ module "cdn" {
     query_string    = true
   }
 
-#   ordered_cache_behavior = [
-#     {
-#       path_pattern           = "/static/*"
-#       target_origin_id       = "s3_one"
-#       viewer_protocol_policy = "redirect-to-https"
+  #   ordered_cache_behavior = [
+  #     {
+  #       path_pattern           = "/static/*"
+  #       target_origin_id       = "s3_one"
+  #       viewer_protocol_policy = "redirect-to-https"
 
-#       allowed_methods = ["GET", "HEAD", "OPTIONS"]
-#       cached_methods  = ["GET", "HEAD"]
-#       compress        = true
-#       query_string    = true
-#     }
-#   ]
+  #       allowed_methods = ["GET", "HEAD", "OPTIONS"]
+  #       cached_methods  = ["GET", "HEAD"]
+  #       compress        = true
+  #       query_string    = true
+  #     }
+  #   ]
 
-#   viewer_certificate = {
-#     acm_certificate_arn = "arn:aws:acm:us-east-1:135367859851:certificate/1032b155-22da-4ae0-9f69-e206f825458b"
-#     ssl_support_method  = "sni-only"
-#   }
-default_root_object = "index.html"
+  #   viewer_certificate = {
+  #     acm_certificate_arn = "arn:aws:acm:us-east-1:135367859851:certificate/1032b155-22da-4ae0-9f69-e206f825458b"
+  #     ssl_support_method  = "sni-only"
+  #   }
+  default_root_object = "index.html"
 
   custom_error_response = [{
     error_caching_min_ttl = 10
-    error_code         = 404
-    response_code      = 200
-    response_page_path = "/index.html"
+    error_code            = 404
+    response_code         = 200
+    response_page_path    = "/index.html"
     }, {
     error_caching_min_ttl = 10
-    error_code         = 403
-    response_code      = 200
-    response_page_path = "/index.html"
+    error_code            = 403
+    response_code         = 200
+    response_page_path    = "/index.html"
   }]
 }

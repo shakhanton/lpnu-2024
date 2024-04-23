@@ -1,25 +1,25 @@
 module "label" {
-  source   = "cloudposse/label/null"
+  source  = "cloudposse/label/null"
   version = "0.25.0"
   context = var.context
 }
 
 module "label_get_all_authours" {
-  source   = "cloudposse/label/null"
+  source  = "cloudposse/label/null"
   version = "0.25.0"
   context = module.label.context
-  name = "get-all-authors"
+  name    = "get-all-authors"
 }
 
 module "label_get_all_courses" {
-  source   = "cloudposse/label/null"
+  source  = "cloudposse/label/null"
   version = "0.25.0"
   context = module.label.context
-  name = "get-all-courses"
+  name    = "get-all-courses"
 }
 
 module "lambda_function_authors" {
-  source = "terraform-aws-modules/lambda/aws"
+  source  = "terraform-aws-modules/lambda/aws"
   version = "7.2.3"
   publish = true
 
@@ -27,7 +27,7 @@ module "lambda_function_authors" {
   description   = "Get all authors"
   handler       = "index.handler"
   runtime       = "nodejs16.x"
-  create_role     = false
+  create_role   = false
 
 
   lambda_role = var.role_get_all_authours_arn
@@ -46,13 +46,13 @@ module "lambda_function_authors" {
   }
 
   use_existing_cloudwatch_log_group = true
-  logging_log_group = var.logging_log_group_authors
+  logging_log_group                 = var.logging_log_group_authors
 
   tags = module.label_get_all_authours.tags
 }
 
 module "lambda_function_courses" {
-  source = "terraform-aws-modules/lambda/aws"
+  source  = "terraform-aws-modules/lambda/aws"
   version = "7.2.3"
   publish = true
 
@@ -60,7 +60,7 @@ module "lambda_function_courses" {
   description   = "Get all courses"
   handler       = "index.handler"
   runtime       = "nodejs16.x"
-  create_role     = false
+  create_role   = false
 
 
   lambda_role = var.role_get_all_courses_arn

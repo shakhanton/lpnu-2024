@@ -1,5 +1,5 @@
 module "front_application" {
-  source = "terraform-aws-modules/s3-bucket/aws"
+  source  = "terraform-aws-modules/s3-bucket/aws"
   version = "v4.1.1"
 
   bucket = module.label_front_app.id

@@ -1,21 +1,21 @@
 module "label" {
-  source   = "cloudposse/label/null"
+  source  = "cloudposse/label/null"
   version = "0.25.0"
   context = var.context
 }
 
 module "label_get_all_authors" {
-  source   = "cloudposse/label/null"
+  source  = "cloudposse/label/null"
   version = "0.25.0"
   context = module.label.context
-  name = "get-all-authors"
+  name    = "get-all-authors"
 }
 
 module "label_get_all_courses" {
-  source   = "cloudposse/label/null"
+  source  = "cloudposse/label/null"
   version = "0.25.0"
   context = module.label.context
-  name = "get-all-courses"
+  name    = "get-all-courses"
 }
 
 # module "iam_assumable_role" {

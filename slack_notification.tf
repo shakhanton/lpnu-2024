@@ -7,10 +7,10 @@ module "notification_label" {
 
 
 module "notify_slack" {
-  source  = "terraform-aws-modules/notify-slack/aws"
-  version = "5.6.0"
-  lambda_function_name = "${module.notification_label.id}"
-  sns_topic_name = module.notification_label.id
+  source               = "terraform-aws-modules/notify-slack/aws"
+  version              = "5.6.0"
+  lambda_function_name = module.notification_label.id
+  sns_topic_name       = module.notification_label.id
 
   slack_webhook_url = var.slack_webhook_url
   slack_channel     = "aws-notification"

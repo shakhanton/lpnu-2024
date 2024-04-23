@@ -1,15 +1,15 @@
 variable "table_authors_arn" {
-    type = string
+  type = string
 }
 
 variable "cloudwatch_log_group_get_all_authours_arn" {
-    type = string
+  type = string
 }
 
 variable "table_courses_arn" {
-    type = string
+  type = string
 }
 
 variable "cloudwatch_log_group_get_all_courses_arn" {
-    type = string
+  type = string
 }

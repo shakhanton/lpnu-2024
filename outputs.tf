@@ -1,17 +1,17 @@
 ###
 
 output "courses_table_name" {
-    value = module.table_courses.id
+  value = module.table_courses.id
 }
 
 output "courses_table_arn" {
-    value = module.table_courses.arn
+  value = module.table_courses.arn
 }
 
 output "authors_table_name" {
-    value = module.table_authors.id
+  value = module.table_authors.id
 }
 
 output "authors_table_arn" {
-    value = module.table_authors.arn
+  value = module.table_authors.arn
 }
